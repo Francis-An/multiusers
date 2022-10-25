@@ -1,0 +1,722 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --orange-color: #F8451C;
+    --blue-color: #1A5FDF;
+    --light-color: #F5F5F6;
+    --dark_light-color: #E5E6EA; 
+    --white: #ffffff;
+    --black: #000000;
+    --yellow: #FCD632;
+    --light_yellow: #FEFAE8;
+    --pink: #F9BACD;
+}
+
+/* Nav links */
+.active {
+    border-bottom: 2px solid var(--orange-color);
+}
+
+.medicine .tb{
+    width: 100px;
+}
+
+.cart-i{
+    color: var(--orange-color);
+    height: 25px;
+    
+}
+.drug-card{
+    text-decoration: none;
+    color: black;
+    transition: 400ms;
+}
+.product{
+    transition: all 400ms;
+}
+.product:hover{
+    transform: scale(0.8);
+}
+
+.card-d{
+    background: black;
+}
+.cart-btn {
+    background: var(--orange-color);
+    color: white;
+    border: none;
+    transition: all 400ms;
+}
+.cart-btn:hover{
+    background: orange;
+}
+
+.search-btn {
+    color: var(--orange-color);
+    color: var(--white);
+}
+
+
+/* Hero box */
+.hero-box1 {
+    background: var(--yellow);
+    
+}
+
+.hero-box2 {
+    background: var(--orange-color);
+}
+
+.hero-box1-lg {
+    height: 60%;
+}
+
+.hero-box1-sm {
+    height: 40%;
+}
+
+.small-i {
+    max-height: 225px;
+    width: 100%;
+    padding-top: 10px;
+    
+}
+.show-btn {
+    background: var(--orange-color);
+    color: var(--white);
+}
+
+main {
+    /* height: 100vh;
+    width: 100vw; */
+    position: relative;
+    bottom: 0;
+    top: 5rem;
+    background: var(--dark-light-color);
+}
+/* footer{
+    height: 200px;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+} */
+.navbar {
+    z-index: 5;
+}
+.font {
+    font-size: 50px;
+    font-weight: bolder;
+    padding: 10px 0;
+}
+
+
+.med {
+    /* display: flex;
+    justify-content: center;
+    align-items:center; */
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    padding: 20px;
+    background: var(--light_yellow);
+    /* text-align: center; */
+}
+.board {
+    background: url('/public/storage/board.svg');
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    padding: 50px;
+    margin-bottom: 20px;
+    
+}
+
+.board h1 {
+    font-weight: bolder;
+}
+
+
+
+footer {
+    background: var(--light_yellow);
+    margin-top: 100px;
+    padding: 50px;
+}
+
+footer a {
+    font-size: 50px;
+    
+}
+
+footer ul {
+    background: var(--light_yellow);
+    display: flex;
+    justify-content: flex-end;
+    /* padding: 20px; */
+}
+
+footer ul li {
+    margin: 5px;
+    transition: all 3s;
+}
+
+footer li:hover {
+    transform: scale(0.6);
+}
+
+.product-hero {
+    background: url('/public/storage/c.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 150px;
+    color: var(--white);
+    
+}
+
+/* Profile */
+
+.profile-info {
+    /* position: relative; */
+    background: var(--white);
+    /* margin: 0; */
+    /* padding: 0;
+    z-index: -5; */
+}
+
+/* .cover {
+    position: relative;
+    z-index: 0;
+} */
+
+.profile {
+    padding: 0;
+    width:200px;
+    height: 200px;
+    border-radius: 50%;
+    
+}
+
+.profil {
+    padding: 0;
+    width: 300px;
+    height: 200px;
+    /* border-radius: 50%; */
+    margin: 20px 0px;
+    text-align: center;
+
+}
+.profil .btn-file {
+    position: relative;
+    border: none;
+    text-align: center;
+    /* right: 150px; */
+    /* border-radius: 50%; */
+
+}
+.home a {
+    text-decoration: none;
+    color: black;
+
+}
+/* End of Drug image */
+
+.profil img {
+    margin: 10px 0px;
+    position: relative;
+    width: 500px;
+    height: 250px;  
+    /* text-align: center;               ; */
+    /* border-radius: 50%; */
+    padding: 0;
+    /* z-index: 3 !important; */
+    
+}
+.profile img {
+    /* position: absolute; */
+    /* top: 20; */
+    /* left: 50; */
+    position: relative;
+    width: 200px;
+    height: 200px;                 ;
+    border-radius: 50%;
+    padding: 0;
+    /* z-index: 3 !important; */
+    
+}
+.btn-file {
+    position: relative;
+    border: none;
+    left: -155px;
+    /* border-radius: 50%; */
+    
+}
+.btn-file img {
+    width: 80px;
+    height: 80px;
+    
+}
+/* End Profile */
+
+/* file input */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
+}
+/* end of file input */
+
+
+
+
+/* Start of medicine single page */
+
+body {
+    background-color: #ecedee
+}
+
+.card {
+    border: none;
+    overflow: hidden
+}
+
+.thumbnail_images ul {
+    list-style: none;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 10px
+}
+
+.thumbnail_images ul li {
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.thumbnail_images ul li:hover {
+    border: 2px solid #000
+}
+
+.main_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    height: 400px;
+    width: 100%;
+    overflow: hidden
+}
+
+.heart {
+    height: 29px;
+    width: 29px;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.content p {
+    font-size: 12px
+}
+
+.ratings span {
+    font-size: 14px;
+    margin-left: 12px
+}
+
+.colors {
+    margin-top: 5px
+}
+
+.colors ul {
+    list-style: none;
+    display: flex;
+    padding-left: 0px
+}
+
+.colors ul li {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+.colors ul li:nth-child(1) {
+    background-color: #6c704d
+}
+
+.colors ul li:nth-child(2) {
+    background-color: #96918b
+}
+
+.colors ul li:nth-child(3) {
+    background-color: #68778e
+}
+
+.colors ul li:nth-child(4) {
+    background-color: #263f55
+}
+
+.colors ul li:nth-child(5) {
+    background-color: black
+}
+
+.right-side {
+    position: relative
+}
+
+.search-option {
+    position: absolute;
+    background-color: #000;
+    overflow: hidden;
+    align-items: center;
+    color: #fff;
+    width: 250px;
+    height: 200px;
+    border-radius: 49% 51% 50% 50% / 68% 69% 31% 32%;
+    left: 25%;
+    bottom: -300px;
+    transition: all 0.5s;
+    cursor: pointer
+}
+
+.search-option .first-search {
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    font-size: 20px;
+    opacity: 1000
+}
+
+.search-option .inputs {
+    opacity: 0;
+    transition: all 0.5s ease;
+    transition-delay: 0.5s;
+    position: relative
+}
+
+.search-option .inputs input {
+    position: absolute;
+    top: 200px;
+    left: 30px;
+    padding-left: 20px;
+    background-color: transparent;
+    width: 300px;
+    border: none;
+    color: #fff;
+    border-bottom: 1px solid #eee;
+    transition: all 0.5s;
+    z-index: 10
+}
+
+.search-option .inputs input:focus {
+    box-shadow: none;
+    outline: none;
+    z-index: 10
+}
+
+.search-option:hover {
+    border-radius: 0px;
+    width: 100%;
+    left: 0px
+}
+
+.search-option:hover .inputs {
+    opacity: 1
+}
+
+.search-option:hover .first-search {
+    left: 27px;
+    top: 25px;
+    font-size: 15px
+}
+
+.search-option:hover .inputs input {
+    top: 20px
+}
+
+.search-option .share {
+    position: absolute;
+    right: 20px;
+    top: 22px
+}
+
+.buttons .btn {
+    height: 50px;
+    width: 150px;
+    border-radius: 0px !important
+}
+
+.add-cart {
+    background: var(--orange-color);
+    color: white;
+    transition: all 0.5s;
+}
+.add-cart:hover{
+    color: black;
+    border: 1px solid black;
+}
+/* End of medicine single page */
+
+.del {
+    display: inline-block;
+}
+
+
+
+
+
+/* Nelson Css */
+
+
+.banner {
+    background-image: url('/public/storage/c.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 20vw;
+
+    color: white;
+    font-size: 3rem;
+    padding: 3rem;
+    text-shadow: 2px 2px 5 #363636;
+}
+
+.product {
+    background-color: white;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.product-image {
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.product-title {
+    text-align: right;
+}
+
+.product-price::before {
+    content: "GH₵ ";
+}
+
+.product-price {
+    text-align: right;
+    font-weight: bold;
+    margin: 4px 0px;
+}
+
+.btn-atc {
+    display: block;
+    margin-left: auto;
+}
+
+.search {
+    border-radius: 50px;
+    border: 1px solid #D35400 !important;
+
+    display: flex;
+
+    min-height: 40px;
+    min-width: 260px;
+}
+
+.search .ph-magnifying-glass {
+    min-width: 20;
+    padding: 0.5rem;
+    color: #D35400;
+}
+
+.search input {
+    min-width: 240px;
+    border: 0px;
+}
+
+.search input:focus,
+.search input:hover {
+    border: 0px solid transparent !important;
+}
+
+.footer {
+    padding: 0;
+    margin: 0;
+
+    background-color: #FEFAE8;
+    min-height: 25vh;
+    border-top: 1px solid #aaaaaa !important;
+}
+
+/* cart */
+
+.tbl-wrapper {
+    background-color: #F9BACD;
+}
+
+.tbl-wrapper h2 {
+    font-size: 25px;
+}
+
+.left {
+    background-color: #F5F5F6;
+}
+
+.right {
+    background-color: #E5E6EA;
+}
+
+.left,
+.right {
+    padding: 32px 16px;
+}
+
+.spacing {
+    min-height: 5vh;
+}
+
+.quantity input {
+    border: 1px solid #363636;
+}
+
+.product-row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cart-product-image {
+    max-width: 90%;
+    padding: 8px;
+}
+
+/* .cart-product-title {} */
+
+.cart-product-price::before {
+    content: "GH₵ ";
+}
+
+.cart-rem-product-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F8451C;
+    color: white;
+}
+
+.cart-headers {
+    text-align: center;
+}
+
+.continue-shopping {
+    color: #1A5FDF;
+    font-weight: bold;
+}
+
+.cart-items-count {
+    font-weight: bold;
+}
+
+.cart-items-cost,
+.cart-items-cost::before {
+    font-weight: bold;
+    content: "GH₵ ";
+    text-align: right;
+}
+
+.summary-list {
+    min-height: 30vh;
+}
+
+.btn-buy-now {
+    background-color: #F8451C;
+    color: white;
+}
+
+.middle-section {
+    background-color: #FCD632;
+    padding: 32px;
+    text-align: center;
+    min-height: 60vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.blue-ring,
+.pink-ring {
+    position: absolute;
+    border: 20px solid;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.blue-ring {
+    border-color: #1A5FDF;
+    top: -75px;
+    right: -75px
+}
+
+.pink-ring {
+    border-color: #F9BACD;
+    bottom: -75px;
+    left: -75px
+}
+
+
+/* Normalize css */
+
+/* End of Nelson css */
+
+
+
+/* order Medicine css */
+.cart-input {
+    border:none;
+    outline:none;
+    width: 40px;
+    background: none;
+    color: black;
+}
+
+
+/* End of order Medicine css */
