@@ -22,13 +22,13 @@ class WelcomeController extends Controller
     public function guest() {
         
     //    if (! Gate::any(['isAdmin','isUser','isPharma']) ? Response::allow() :abort(403)){
-    //      $medicines = Medicine::all();
-    //     $latests = Medicine::orderBy('id','desc')->limit(4)->get();
-    //     return view('dashboard',[
-    //         'medicines' => $medicines,
-    //         'latest' => $latests,
+         $medicines = Medicine::all();
+        $latests = Medicine::orderBy('id','desc')->limit(4)->get();
+        return view('dashboard',[
+            'medicines' => $medicines,
+            'latests' => $latests,
 
-    //     ]);
+        ]);
     //    }
     }
 }

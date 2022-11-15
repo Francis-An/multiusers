@@ -34,21 +34,23 @@
                                     </div>
                                     <div class="product-title text-center">
                                         {{-- {{ $medicine->generic_name }} --}}
-                                        Pharmacy Name
+                                        {{ $medicine->users->name }}
                                     </div>
                                     <div class="product-price text-center">{{ $medicine->price }}</div>
                                     <form action="/carts" method="POST" class="">
                                         @csrf
                                         <div>
-                                            
+
                                             @if (Auth::user())
                                                 @can('isUser')
                                                     <input type="submit" class="btn btn-primary btn-atc cart-btn"
                                                         value="Add To Cart">
                                                 @endcan
                                             @else
-                                                <input type="submit" class="btn btn-primary btn-atc cart-btn"
-                                                    value="Add To Cart">
+                                                <a href="{{ route('login') }}" style="width:120px"
+                                                    class="btn  btn-primary btn-atc cart-btn">
+                                                    Add To Cart
+                                                </a>
                                             @endif
                                         </div>
                                         <input type="int" name="quantity" value="1" hidden>
@@ -118,8 +120,10 @@
                                                         value="Add To Cart">
                                                 @endcan
                                             @else
-                                                <input type="submit" class="btn btn-primary btn-atc cart-btn"
-                                                    value="Add To Cart">
+                                                <a href="{{ route('login') }}" style="width:120px"
+                                                    class="btn  btn-primary btn-atc cart-btn">
+                                                    Add To Cart
+                                                </a>
                                             @endif
                                         </div>
                                         <input type="int" name="quantity" value="1" hidden>

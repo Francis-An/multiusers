@@ -15,12 +15,13 @@
                     <th>Medicine Name</th>
                     @if (Auth::user()->role == 'pharma')
                         <th>Customer Name</th>
-                        {{-- <th>Location</th> --}}
-                        {{-- <th>Phone Number</th> --}}
+                        <th>Location</th>
+                        <th>Phone Number</th>
                         <th>Email</th>
                     @else
                         <th>Pharmacy</th>
                     @endif
+                    <th>Quantity</th>
                     <th>Total Amount</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -36,35 +37,59 @@
                             {{-- @can('view', $order) --}}
                             <tr>
                                 <td>
-                                    <div class="col-2">
+                                    <div class="col-2 btn">
 
-                                        <img src="{{ asset('images/' . $order->medicines->image) }}" class="cart-product-imag"
-                                            width="50">
+                                        <a style="text-decoration:none;color:black" href="/medicines/{{ $order->medicines->id }}">
+                                            <img src="{{ asset('images/' . $order->medicines->image) }}" class="cart-product-imag"
+                                                width="50">
+                                        </a>
                                     </div>
                                 </td>
                                 <td>{{ $order->medicines->generic_name }}</td>
-                                <td>{{ $order->medicines->users->name }}</td>
+                                <td class="btn btn-light"><a style="text-decoration:none;color:black" href="">
+                                    {{ $order->medicines->users->name }}</a>
+                                </td>
                                 @if (Auth::user()->role == 'pharma')
                                     {{-- <td>{{ $order->location }}</td> --}}
                                     {{-- <td>{{ $order->phone }}</td> --}}
                                     <td>{{ $order->users->email }}</td>
                                 @endif
+                                <td>{{ $order->quantity }}</td>
                                 <td>{{ $order->amount }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
-                                    {{ $order->status }}
+                                    @if ($order->status == 'pending')
+                                        Pendding
+                                    @elseif ($order->status == 'Delivered')
+                                        <p>Delivered</p>
+                                    @elseif ($order->status == 'Cancelled')
+                                        <p>Cancelled</p>
+                                    @elseif($order->status == 'Ready')
+                                        <p>Ready</p>
+                                    @elseif($order->status == 'Re-Order')
+                                        
+                                            Re-Ordered
+                                    @endif
                                 </td>
                                 <td>
                                     {{-- @can('view', $medicine) --}}
-                                    <a href="/medicines/" class="btn btn-info mb-3">View</a>
+                                    <a href="/cancel/{{ $order->id }}" class="btn btn-info mb-3">View</a>
                                     {{-- @endcan --}}
-                                    {{-- <a href="/orders/{{ $order->id }}/edit" class="btn btn-primary mb-3">Edit</a> --}}
-                                    {{-- @can('delete', $medicine) --}}
-                                    <form class="del" action="/orders/{{ $order->id }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger mb-3 ">Cancel</button>
-                                    </form>
+                                    @if ($order->status == 'pending' || $order->status == 'Re-Order')
+                                        <a href="{{ url('cancelled/' . $order->id) }}"
+                                            class="btn btn-primary mb-3">Cancelled</a>
+                                    @elseif ($order->status == 'Cancelled' || $order->status == 'Delivered')
+                                        <a href="{{ url('change-status/' . $order->id) }}"
+                                            class="btn btn-info mb-3">Reorder</a>
+                                        <form class="del" action="/orders/{{ $order->id }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger mb-3 ">Delete</button>
+                                        </form>
+                                    @endif
+
+                                   
+
                                     {{-- @endcan --}}
                                     {{-- <a href="/medicines/{{ $medicine->id }}" class="btn btn-danger mb-3">Delete</a> --}}
                                 </td>
@@ -83,10 +108,15 @@
                                     </div>
                                 </td>
                                 <td>{{ $order->medicines->generic_name }}</td>
-                                <td>{{ $order->users->name }}</td>
-                                {{-- <td>{{ $order->location }}</td> --}}
-                                {{-- <td>{{ $order->phone }}</td> --}}
+                                <td class="btn btn-light">
+                                    <a style="text-decoration:none;color:black" href="/users/{{ $order->users->id }}">
+                                        {{ $order->users->name }}
+                                    </a>
+                                </td>
+                                <td>{{ $order->users->address }}</td>
+                                <td>{{ $order->users->phone }}</td>
                                 <td>{{ $order->users->email }}</td>
+                                <td>{{ $order->quantity }}</td>
                                 <td>{{ $order->amount }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
@@ -113,9 +143,10 @@
                                     @if ($order->status == 'pending' || $order->status == 'Re-Order')
                                         <a href="{{ url('cancelled/' . $order->id) }}"
                                             class="btn btn-primary mb-3">Cancelled</a>
-                                    @elseif ($order->status == 'Cancelled' || $order->status == 'Delivered')
-                                        <a href="{{ url('change-status/' . $order->id) }}"
-                                            class="btn btn-info mb-3">Reorder</a>
+                                    
+                                        
+                                    @endif
+                                    @if ($order->status != 'Ready')
                                         <form class="del" action="/orders/{{ $order->id }}" method="POST">
                                             @csrf
                                             @method('delete')
@@ -123,10 +154,7 @@
                                         </form>
                                     @endif
 
-                                    @if ($order->status == 'Cancelled')
-                                        <a href="{{ url('change-status/' . $order->id) }}"
-                                            class="btn btn-info mb-3">Reorder</a>
-                                    @endif
+                                    
 
                                     {{-- @endcan --}}
                                     {{-- <a href="/medicines/{{ $medicine->id }}" class="btn btn-danger mb-3">Delete</a> --}}

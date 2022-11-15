@@ -14,11 +14,14 @@
                     Edit Profile <input id="uploadProfile" type="file">
                 </span> --}}
             </div>
-            <div class="col edit-btn text-end">
-                <span class="btn btn-outline-secondary btn-file">
-                    Edit Profile <input id="uploadCover" type="file">
-                </span>
+            @can('view',$pharmacy)
+                <div class="col edit-btn text-end">
+                <a href="/users/{{ $pharmacy->id }}/edit" class="btn btn-outline-secondary btn-file">
+                    {{-- <input id="uploadCover" type="file"> --}}
+                     Edit Profile
+                </a>
             </div>
+            @endcan
         </div>
     </div>
 
@@ -35,13 +38,9 @@
                         </td>
                     </tr>
                     <tr>
-                        @foreach ($pharmacies as $pharmacy)
-                            {{-- @if ($pharmacy->users['id'] == $pharmacy->id) --}}
-                                @can('view', Auth::user()->id)
-                                    <th class="ps-5 pb-4 h2 "></th>
-                                @endcan
-                            {{-- @endif --}}
-                        @endforeach
+
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->name }}</th>
+
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -52,7 +51,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">Asylum Down</th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->address }}</th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -63,18 +62,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">lorema eieheo e oejo </th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->liscence }} </th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
                     <tr>
                         <td>
                             <img src="{{ asset('storage/calendar_today_black_24dp.svg') }}" alt="">
-                            Date Started
+                            Founded
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">200-12 </th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->founded }} </th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -86,11 +85,7 @@
                     </tr>
                     <tr>
                         <th class="ps-5 pb-4 h2 border">
-                            Lajdfeo Jf Ljewr Flj Eoj Ljfljeo Elj Fjlej Je Lrj Oiflej Ol Jfoj Iel Fj O
-                            Lajdfeo Jf Ljewr Flj Eoj Ljfljeo Elj Fjlej Je Lrj Oiflej Ol Jfoj Iel Fj O
-                            Lajdfeo Jf Ljewr Flj Eoj Ljfljeo Elj Fjlej Je Lrj Oiflej Ol Jfoj Iel Fj O
-                            Lajdfeo Jf Ljewr Flj Eoj Ljfljeo Elj Fjlej Je Lrj Oiflej Ol Jfoj Iel Fj O
-                            Lajdfeo Jf Ljewr Flj Eoj Ljfljeo Elj Fjlej Je Lrj Oiflej Ol Jfoj Iel Fj O
+                             {{ $pharmacy->bio }}
                         </th>
                     </tr>
                     {{-- End One column --}}
@@ -106,7 +101,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">Kwaku Fredrick</th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->owner_name }}</th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -117,7 +112,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">starclinic@gmail.com</th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->email }}</th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -128,7 +123,34 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">+233 553632881 </th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->phone }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            City
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->city }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            Region
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->region }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            Postal Code
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->postal_code }} </th>
                     </tr>
                     {{-- End One column --}}
 

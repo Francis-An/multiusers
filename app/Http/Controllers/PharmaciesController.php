@@ -80,10 +80,11 @@ class PharmaciesController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', $id);
-        // $pharmacy = Pharmacy::find($id);
-        // return view('pharmacy.pharmacy_profile')->with('pharmacy',$pharmacy);
-        // return 'Welcome to your profile';
+        $pharmacy = User::find($id);
+        // dd($pharmacy);
+        return view('pharmacy.medicine.one_pharmacy_drugs', [
+            'pharmacy' => $pharmacy,
+        ]);
     }
 
     /**
@@ -123,11 +124,23 @@ class PharmaciesController extends Controller
         //
     }
 
+    // public function products($id) {
+    //     $pharmacy = User::find($id);
+    //     return view('pharmacy.medicine.one_pharmacy_drugs', [
+    //         'pharmacy' => $pharmacy,
+    //     ]);
+    // }
 
-    public function pharmacy_profile(Request $user) {
-        // $medicine
-        return view('pharmacy.pharmacy_profile');
-    }
+
+    // public function all_customers($id) {
+    //     $pharmacy = User::find($id);
+    //     dd($pharmacy);
+    //     return view('user.customers_for_one_pharmacy', [
+    //         $pharmacy
+    //     ]);
+
+    // }
+   
 
     public function search(Request $request){
         
@@ -147,4 +160,8 @@ class PharmaciesController extends Controller
                     ]);
         }
     }
+
+
+
+
 }

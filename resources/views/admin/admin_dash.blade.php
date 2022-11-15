@@ -6,7 +6,7 @@
     <div class="row mx-4">
         {{-- @foreach ($medicines as $medicine) --}}
             <div class="col-sm-3 ">
-                <a class="drug-card" href="/medicines/">
+                <a class="drug-card" href="/pharmacies">
                     <div class="product card-d bg-light">
                         <img src="{{ asset('/storage/people_alt_black_24dp.svg') }}" alt="" class="product-image" />
                         <div class="product-title text-center">
@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="col-sm-3 ">
-                <a class="drug-card" href="/medicines/">
+                <a class="drug-card" href="/users">
                     <div class="product card-d bg-light">
                         <img src="{{ asset('/storage/people_alt_black_24dp.svg') }}" alt="" class="product-image" />
                         <div class="product-title text-center">
@@ -38,7 +38,7 @@
                 </a>
             </div>
             <div class="col-sm-3 ">
-                <a class="drug-card" href="/medicines/">
+                <a class="drug-card" href="/medicines">
                     <div class="product card-d bg-light">
                         <img src="{{ asset('/storage/people_alt_black_24dp.svg') }}" alt="" class="product-image" />
                         <div class="product-title text-center">

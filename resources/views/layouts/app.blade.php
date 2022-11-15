@@ -86,17 +86,20 @@
 
                             {{-- Pharmacies dropdown --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Pharmacies
+                                <a id="navbarDropdown"
+                                    class="nav-link dropdown-toggle {{ request()->is('products') ? 'active' : '' }} 
+                                {{ request()->is('pharmacies') ? 'active' : '' }}"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                    Stores
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('products') }}">
                                         {{ __('Drugs') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('store') }}">
-                                        {{ __('Stores') }}
+                                    <a class="dropdown-item" href="/pharmacies">
+                                        {{ __('Pharmacies') }}
                                     </a>
 
                                 </div>
@@ -143,12 +146,20 @@
                             </li>
 
                             {{-- Products link --}}
-                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'pharma')
+                            @if (Auth::user()->role == 'pharma')
                                 <li class="nav-item cart">
                                     <a class="nav-link ms-2 cart-link {{ request()->is('medicines') ? 'active' : '' }}"
                                         href="/medicines">{{ __('Drugs') }}
                                     </a>
                                 </li>
+                                @if (Auth::user()->role == 'pharma')
+            
+                                    <li class="nav-item cart">
+                                        <a class="nav-link ms-2 cart-link {{ request()->is('users') ? 'active' : '' }}"
+                                            href="/pharmacy_users/{{ Auth::user()->id }}">{{ __('Customers') }}
+                                        </a>
+                                    </li>
+                                @endif
                             @endif
                             {{-- <span class="material-icons cart-i">shopping_cart</span> --}}
 
@@ -162,18 +173,11 @@
                                 </li>
 
                                 {{-- Pharmacies dropdown --}}
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        Pharmacies
+                                <li class="nav-item cart">
+                                    <a class="nav-link ms-2 cart-link {{ request()->is('pharmacies') ? 'active' : '' }}"
+                                        href="{{ url('/pharmacies') }}">{{ __('Pharmacies') }}
+
                                     </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/">
-                                            {{ __('Drugs') }}
-                                        </a>
-
-                                    </div>
                                 </li>
                                 {{-- End of Pharmacies Drop down --}}
                             @endcan
@@ -188,27 +192,33 @@
 
                             {{-- Register Pharmacy link for admin --}}
                             @if (Auth::user()->role == 'admin')
-                                
-                                <li class="nav-item dropdown me-4">
-                                <a id="navbarDropdown" 
-                                class="nav-link dropdown-toggle {{ request()->is('users') ? 'active' : '' }} 
-                                {{ request()->is('users/create') ? 'active' : '' }}" 
-                                href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Pharmacies
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/users/create">
+                                <li class="nav-item cart">
+                                        <a class="nav-link ms-2 cart-link {{ request()->is('users') ? 'active' : '' }}"
+                                            href="/users">{{ __('Users') }}
+                                        </a>
+                                    </li>
+
+                                <li class="nav-item dropdown me-4">
+                                    <a id="navbarDropdown"
+                                        class="nav-link dropdown-toggle {{ request()->is('pharmacies') ? 'active' : '' }} 
+                                {{ request()->is('pharmacies/create') ? 'active' : '' }} {{ request()->is('pharmacy/') ? 'active' : '' }}"
+                                        href="" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
+                                        Pharmacies
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/pharmacies/create">
                                             {{ __('Register Pharmacy') }}
                                         </a>
-                                        <a class="dropdown-item" href="/users">
+                                        <a class="dropdown-item" href="/pharmacies">
                                             {{ __('All Pharmacy') }}
                                         </a>
 
 
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
                             @endif
                             {{-- End Register Pharmacy link for admin --}}
 
@@ -219,15 +229,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    {{-- @if (Auth::user()->role == 'pharma') --}}
-                                        {{-- <a class="dropdown-item" href="/pharmacies/create">
+                                    @if (Auth::user()->role == 'user')
+                                        <a class="dropdown-item" href="/customers/{{ Auth::user()->id }}">
                                             {{ __('Profile Settings') }}
-                                        </a> --}}
-                                    {{-- @else --}}
+                                        </a>
+                                    @elseif (Auth::user()->role == 'pharma')
                                         <a class="dropdown-item" href="/users/{{ Auth::user()->id }}">
                                             {{ __('Profile Settings') }}
                                         </a>
-                                    {{-- @endif --}}
+                                    @endif
 
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -26,6 +26,7 @@ class OrderMedicine extends Model
         'amount',
         'date',
         'status',
+        'quantity',
     ];
 
     public function users() {

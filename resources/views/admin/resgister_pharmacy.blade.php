@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- @include('flash-message') --}}
+    @include('flash-message')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Register Pharmacy') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/users" enctype="multipart/form-data">
+                        <form method="POST" action="/pharmacies" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                         required  autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

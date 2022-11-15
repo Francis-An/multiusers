@@ -5,11 +5,11 @@
     <div class="container profile-info">
 
         <div class="col cover py-3">
-            <img id="coverPreview" src="{{ asset('storage/house.jpg') }}" width="100%" height="200" alt="">
+            <img id="coverPreview" src="{{ asset('images/' . $pharmacy->cover_image) }}" width="100%" height="200" alt="">
         </div>
         <div class="row">
             <div class="col profile mx-5">
-                <img id="profilePreview" src="{{ asset('storage/user.jpg') }}" alt="">
+                <img id="profilePreview" src="{{ asset('images/' . $pharmacy->profile_image) }}" alt="">
                 {{-- <span class="btn btn-outline-secondary btn-file">
                     Edit Profile <input id="uploadProfile" type="file">
                 </span> --}}
@@ -23,6 +23,13 @@
             </div>
             @endcan
         </div>
+        @can('view',$pharmacy)
+            <div class="col edit-btn text-end py-2">
+        <a href="/change/{{ $pharmacy->id }}/edit" class="btn edit-btn btn-outline-secondary btn-file text-end">
+            {{-- <input id="uploadCover" type="file"> --}}
+            Change password
+        </a>
+        @endcan
     </div>
 
 
@@ -51,7 +58,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->location }}</th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->address }}</th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -101,7 +108,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->owner }}</th>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->owner_name }}</th>
                     </tr>
                     {{-- End One column --}}
                     {{-- One column --}}
@@ -124,6 +131,33 @@
                     </tr>
                     <tr>
                         <th class="ps-5 pb-4 h2 ">{{ $pharmacy->phone }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            City
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->city }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            Region
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->region }} </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/phone_black_24dp.svg') }}" alt="">
+                            Postal Code
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="ps-5 pb-4 h2 ">{{ $pharmacy->postal_code }} </th>
                     </tr>
                     {{-- End One column --}}
 

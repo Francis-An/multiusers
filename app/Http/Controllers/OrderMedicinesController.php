@@ -56,7 +56,8 @@ class OrderMedicinesController extends Controller
             $order = OrderMedicine::create([
                 'user_id' => $item->user_id,
                 'medicine_id' => $item->medicine_id,
-                'amount' => $item->price, 
+                'amount' => $item->total_amount, 
+                'quantity' => $item->quantity, 
                 'date' => $item->created_at, 
                 // 'quantity' => $item->quantity, 
             ]);
@@ -64,6 +65,7 @@ class OrderMedicinesController extends Controller
             $cart_id = $item->id;
             $cart = Cart::find($cart_id);
             $cart->delete();
+            // dd($order);
         }
 
         
@@ -148,11 +150,17 @@ class OrderMedicinesController extends Controller
         // return $getStatus;
         if($getStatus->status == 'pending'){
             $status = 'Ready';
-        }elseif($getStatus->status == 'Cancelled'){
+        }
+        elseif($getStatus->status == 'Ready'){
+            $status = 'Delivered';
+        }
+        elseif($getStatus->status == 'Cancelled' || $getStatus->status == 'Delivered'){
             $status = 'Re-Order';
-        }elseif($getStatus->status == 'Re-Order'){
+        }
+        elseif($getStatus->status == 'Re-Order'){
             $status = 'pending';
-        }else {
+        }
+        elseif($getStatus->status == 'Delivered') {
             $status = 'Delivered';
         }
         orderMedicine::where('id',$id)->update(['status' => $status]);

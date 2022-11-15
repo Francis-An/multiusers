@@ -14,6 +14,7 @@
                         
                     <th>Pharmacy</th>
                     @endcan
+                    <th>Drug Photo</th>
                     <th>Generic name</th>
                     <th>instructions</th>
                     <th>Manufacture</th>
@@ -34,12 +35,21 @@
                     @if (Auth::user()->role == 'pharma')
                         @can('view', $medicine)
                             <tr>
+                                <td>
+                                    <div class="col-2 btn">
+
+                                        <a style="text-decoration:none;color:black" href="/medicines/{{ $medicine->id }}">
+                                            <img src="{{ asset('images/' . $medicine->image) }}" class="cart-product-imag"
+                                                width="50">
+                                        </a>
+                                    </div>
+                                </td>
                                 <td>{{ $medicine->generic_name }}</td>
                                 <td class="tb">{{ $medicine->instructions }}</td>
                                 <td>{{ $medicine->manufacture }}</td>
                                 <td class="tb">{{ $medicine->description }}</td>
-                                <td>{{ $medicine->dose }}</td>
-                                <td>{{ $medicine->dose_unit }}</td>
+                                <td>{{ $medicine->drug_dosage }}</td>
+                                <td>{{ $medicine->drug_dosage_unit }}</td>
                                 <td>{{ $medicine->price }}</td>
                                 <td>{{ $medicine->available }}</td>
                                 <td>{{ $medicine->starting_date }}</td>

@@ -102,11 +102,13 @@
                                         class="col-md-4 col-form-label text-md-end">{{ __('Dose') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="dose" type="int"
-                                            class="form-control @error('dose') is-invalid @enderror" name="dose" required
-                                            autocomplete="dose" value="{{ $medicine->dose }}">
+                                        <input id="dose" type="int" class="form-control" name="dose" value="{{ $medicine->dose }}" hidden>
 
-                                        @error('dose')
+                                        <textarea class="form-control form-control @error('drug_dosage') is-invalid @enderror" 
+                                            name="drug_dosage" autocomplete="drug_dosage" name="drug_dosage" rows="3" 
+                                            required>{{ $medicine->drug_dosage }}</textarea>
+
+                                            @error('drug_dosage')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -117,11 +119,13 @@
                                 <div class="row mb-3">
                                     <label for="dose_unit"
                                         class="col-md-4 col-form-label text-md-end">{{ __('Dose unit') }}</label>
-
                                     <div class="col-md-6">
-                                        <input id="dose_unit" type="int"
-                                            class="form-control @error('dose_unit') is-invalid @enderror" name="dose_unit"
-                                            required autocomplete="dose_unit" value="{{ $medicine->dose_unit }}">
+                                        <textarea class="form-control form-control @error('drug_dosage_unit') is-invalid @enderror" 
+                                           autocomplete="drug_dosage_unit" name="drug_dosage_unit" rows="3" 
+                                            required>{{ $medicine->drug_dosage_unit }}</textarea>
+
+                                        <input id="dose_unit" type="int" class="form-control" name="dose_unit" 
+                                            value="{{ $medicine->dose_unit }}" hidden>
 
                                         @error('dose_unit')
                                             <span class="invalid-feedback" role="alert">
@@ -201,12 +205,13 @@
                                     </div>
                                 </div>
 
-                                       {{ __('Update drug') }}
-                                        </button>
-                                    </div>
-                                </div><div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
+                                <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Update drug') }}
+                                </button>
+                            </div>
+                        </div>
                                      
                             </form>
                         </div>

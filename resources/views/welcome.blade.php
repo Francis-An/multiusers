@@ -137,7 +137,7 @@
                             </div>
                             <div class="product-title text-center">
                                 {{-- {{ $medicine->generic_name }} --}}
-                                Pharmacy Name
+                                {{ $medicine->users->name }}
                             </div>
                             <div class="product-price text-center">{{ $medicine->price }}</div>
                             <form action="/carts" method="POST" class="">

@@ -26,9 +26,13 @@
                                     </p>
                                     <div class="col">
                                         @can('isUser')
-                                            <a href="" class="btn btn-primary">&LeftArrow; Continue shopping</a>
+                                            <a href="/home" class="btn btn-primary">&LeftArrow; Continue shopping</a>
                                         @else
-                                            <a href="/medicines" class="btn btn-primary">&LeftArrow; Back</a>
+                                            @if (Auth::user())
+                                                <a href="/home" class="btn btn-primary">&LeftArrow; Back</a>
+                                            @else
+                                                <a href="/products" class="btn btn-primary">&LeftArrow; Back</a>
+                                            @endif
                                             @can('view', $medicine)
                                                 <form class="del" action="/medicines/{{ $medicine->id }}" method="POST">
                                                     @csrf
@@ -64,16 +68,16 @@
                                     <div class="px-3 py-2 text-justify">
                                         <hr>
                                         <h3 class="text-center pt-2">Available in</h3>
-                                        <form action="{{ route('pharmacy.profile') }}" method="POST" class="">
-                                            @csrf
-                                            <input type="int" name="medicine_id" value="{{ $medicine->users->id }}"
-                                                hidden>
-                                            <div class="text-center text-justify">
-                                                <input class="btn btn-info text-white p-4 text-uppercase" type="submit"
-                                                    name="medicine_id" value="{{ $medicine->users->name }}">
-                                            </div>
+                                        {{-- <form action="{{ route('pharmacy.profile') }}" method="POST" class=""> --}}
+                                        {{-- @csrf --}}
+                                        <input type="int" name="medicine_id" value="{{ $medicine->users->id }}" hidden>
+                                        <div class="text-center text-justify">
+                                            <a class="btn btn-info text-white p-4 text-uppercase" type="submit"
+                                                href="/users/{{ $medicine->users->id }}" name="medicine_id"
+                                                value="">{{ $medicine->users->name }}</a>
+                                        </div>
 
-                                        </form>
+                                        {{-- </form> --}}
                                     </div>
                                     <div class="px-3 py-2 text-justify">
                                         <hr>
@@ -97,7 +101,6 @@
                                         </div>
                                         <input type="int" name="quantity" value="1" hidden>
                                         <input type="int" name="total_amount" value="{{ $medicine->price }}" hidden>
-                                        {{-- <input type="int" name="user_id" value="{{ Auth::user()}}" hidden> --}}
                                         <input type="int" name="medicine_id" value="{{ $medicine->id }}" hidden>
                                         <input type="int" name="price" value="{{ $medicine->price }}" hidden>
                                         <input type="text" name="medicine_name" value="{{ $medicine->generic_name }}"

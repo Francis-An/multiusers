@@ -68,7 +68,9 @@ class MedicinesController extends Controller
             'available' => 'required|integer',
             'dose' => 'required|integer',
             'dose_unit' => 'required|integer',
-            'image' => 'required|mimes:jpg,png,jpeg'
+            'image' => 'required|mimes:jpg,png,jpeg',
+            'drug_dosage' => 'required',
+            'drug_dosage_unit' => 'required',
         ]);
         // Image
         $image = time(). '-'. $request->input('image').  
@@ -91,6 +93,8 @@ class MedicinesController extends Controller
             'dose' => $request->input('dose'),
             'dose_unit' => $request->input('dose_unit'),
             'image' => $image,
+            'drug_dosage' => $request->input('drug_dosage'),
+            'drug_dosage_unit' => $request->input('drug_dosage_unit'),
         ]);
 
         // dd($medicine);
@@ -137,14 +141,15 @@ class MedicinesController extends Controller
      */
     public function update(Request $request, $user)
     {
-        // $this->authorize('update', );
-
-        // $request->validated();
-
-         // Image
+        //  $image = $request->file('image');
+        if(!$request->has('image')){
+            return response()->json(['messaage' => 'Missing file'],422);
+        }
         $image = time(). '-'. $request->input('image').  
         $request->image->extension();
         $request->image->move(public_path('images'), $image);
+        
+        // dd($image);
 
         $medicine = Medicine::where('id', $user)
             ->update([
@@ -160,6 +165,8 @@ class MedicinesController extends Controller
             'dose' => $request->input('dose'),
             'dose_unit' => $request->input('dose_unit'),
             'image' => $image,
+            'drug_dosage' => $request->input('drug_dosage'),
+            'drug_dosage_unit' => $request->input('drug_dosage_unit'),
         ]);
 
         // dd($medicine);

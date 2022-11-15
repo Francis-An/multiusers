@@ -28,6 +28,8 @@ class Medicine extends Model
         'price',
         'available',
         'dose_unit',
+        'drug_dosage',
+        'drug_dosage_unit',
         
     ];
 
